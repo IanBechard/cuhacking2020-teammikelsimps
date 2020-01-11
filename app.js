@@ -19,12 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname + '/views/index.html'));
-});
-
-//app.use('/', indexRouter);
+app.use('/', indexRouter);
 
 app.use('/users', usersRouter);
 
