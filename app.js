@@ -32,7 +32,7 @@ var client = new Twitter({
 
 //params for our twitter api call
 var params = {
-  q: 'RBC Mobile App',
+  q: 'RBC Mobile',
   count: 50,
   result_type: 'recent',
   lang: 'en'
