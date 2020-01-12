@@ -32,17 +32,18 @@ var client = new Twitter({
 
 //params for our twitter api call
 var params = {
-  q: 'RBC Mobile',
+  q: 'david neale',
   count: 50,
   result_type: 'recent',
-  lang: 'en'
+  lang: 'en',
+  tweet_mode: 'extended'
 }
 
 app.get('/send', (req, res) => {
   client.get('search/tweets', params, function(err, data, response) {
     if(!err){
       res.send(data.statuses);
-      console.log("post recieved")
+      console.log("send data recieved")
     } else {
       console.log(err);
     }

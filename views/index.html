@@ -12,7 +12,7 @@
       $.get("http://localhost:3000/send", (data) => {
         $("ol").empty();
         for(i = 0; i < data.length; i++){
-          $("ol").append(`<li> ${data[i].text} </li>`);
+          $("ol").append(`<li> ${data[i].full_text} </li>`);
         }
       })
     })
