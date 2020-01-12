@@ -43,7 +43,7 @@ function sendData2(ourData){
   var htmlTweetList = [];
   for (i = 0; i< ourData.length; i++){
     client.get('statuses/oembed', 'https://twitter.com/' + ourData[i].screen_name + ourData[i].id), function(err, data, response){
-      
+
     }  
   }
 }
@@ -68,7 +68,7 @@ app.get('/send', (req, res) => {
     if(!err){
          
       res.send(sendData(data.statuses));
-      console.log("post recieved")
+      console.log("send data recieved")
     } else {
       console.log(err);
     }

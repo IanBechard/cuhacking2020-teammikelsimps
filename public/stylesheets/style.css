@@ -2,16 +2,51 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #00B7FF;
+  background: url(bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 a {
   color: #00B7FF;
-}
-h1 {
-  color: #00B645;
-  text-align: center;
+  background: #00B7FF;
 }
 
-container {
-  padding: 5px;
+h1 {
+  color: rgb(255, 255, 255); text-align: center;
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px black;
+}
+h4 {
+  color: rgb(255, 255, 255); text-align: center;
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px black;
+}
+
+
+div.container1 {
+  color: rgb(255, 255, 255); text-align: center;
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px black;
+  height: 10em;
+  position: relative
+
+}        
+
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  background-color: #538fbe;
+  padding: 20px 70px;
+  font-size: 24px;
+  border: 1px solid #2d6898;
+}
+
+button.blue {
+  color: white;
+  background: #4C8FFB;
+  border: 1px #3079ED solid;
+  box-shadow: inset 0 1px 0 #80B0FB;
 }
