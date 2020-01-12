@@ -2,7 +2,11 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #00B7FF;
-  background-image: url(bg.png);
+  background: url(bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 a {
@@ -22,6 +26,7 @@ h4 {
 
 div.container1 {
   color: rgb(255, 255, 255); text-align: center;
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px black;
   height: 10em;
   position: relative
 
@@ -29,6 +34,7 @@ div.container1 {
 
 .btn{
   vertical-align: middle;
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px black;
 }
 
 
