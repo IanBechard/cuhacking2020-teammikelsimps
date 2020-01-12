@@ -4,15 +4,29 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
-  
+  <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+  }(document, "script", "twitter-wjs"));</script>
+
   <script>
   $(document).ready(function(){
     $("#btn").click(function(){
       $.get("http://localhost:3000/send", (data) => {
         $("ol").empty();
         for(i = 0; i < data.length; i++){
-          
           $("ol").append(`<li> ${data[i]} </li>`);
         }
       })
@@ -28,20 +42,20 @@
 
 
 ​<div class="container1">
-  
+
     <img src="./img/logo.png" alt="RBC Logo" align="middle">
-    
+
 <div class="card-body">
   <h4 class="card-title">Flagged Posts</h4>
 </div>
 <div class="comment-widgets scrollable">
   <!-- Comment Row -->
-      
+
   <button class="blue" id="btn">Populate Tweets!</button>
-         
-      
-      
-  
+
+
+
+
   <ol>
 
   </ol>

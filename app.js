@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+const https = require('https');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -29,31 +30,51 @@ var client = new Twitter({
   access_token_secret: 'pb4trWNelnsmPDgTYbPqbY4TNwBeH132yp80HKrywWbud'
 });
 
+/*
 function sendData(data){
-  
-  
   var textList = [];
-      for (i = 0; i < data.length; i++){
-          textList.push(data[i].full_text)
-      }
-      return textList;
+    for (i = 0; i < data.length; i++){
+      textList.push(data[i].full_text)
+    }
+  return textList;
 }
+*/
 
 function sendData2(ourData){
   var htmlTweetList = [];
+
   for (i = 0; i< ourData.length; i++){
-    client.get('statuses/oembed', 'https://twitter.com/' + ourData[i].screen_name + ourData[i].id), function(err, data, response){
-
-    }  
+    htmlTweetList.push(embedTweet(ourData, i));
   }
+
+  console.log(htmlTweetList);
+  return htmlTweetList;
 }
 
-function makeData(textList){
-    for (i = 0; i < textList.length; i++){
+function embedTweet(ourData, i){
+  https.get('https://api.twitter.com/oauth/authenticate?oauth_token=' + client.access_token_key, (resp) => {
+    let data = '';
 
-    }  
+  // A chunk of data has been recieved.
+    resp.on('data', (chunk) => {
+      data += chunk;
+  })});
+
+
+  https.get('https://publish.twitter.com/oembed?url='.concat('https://twitter.com/', ourData[i].screen_name, '/status/', ourData[i].id_str), (resp) => {
+  let body = '';
+  // A chunk of data has been recieved.
+    resp.on('data', (chunk) => {
+      body += chunk;
+    });
+
+    resp.on('end', () => {
+      console.log(JSON.parse(body).html);
+      return JSON.parse(body).html;
+    });
+  });
+
 }
-
 //params for our twitter api call
 var params = {
   q: 'RBC fix',
@@ -66,8 +87,7 @@ var params = {
 app.get('/send', (req, res) => {
   client.get('search/tweets', params, function(err, data, response) {
     if(!err){
-         
-      res.send(sendData(data.statuses));
+      res.send(sendData2(data.statuses));
       console.log("send data recieved")
     } else {
       console.log(err);
