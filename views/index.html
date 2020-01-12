@@ -4,30 +4,39 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
 
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
-
-  return t;
-  }(document, "script", "twitter-wjs"));</script>
 
   <script>
   $(document).ready(function(){
     $("#btn").click(function(){
-      $.get("http://localhost:3000/send", (data) => {
-        $("ul").empty();
+      $.get("http://localhost:3000/appSend", (data) => {
+        $("#app").empty();
         for(i = 0; i < data.length; i++){
-          $("ul").append(`<li> ${data[i].full_text} <a href="https://twitter.com/a/status/${data[i].id_str}" target="_blank">link</a> </li>`);
+          $("#app").append(`<li> ${data[i].full_text} <a href="https://twitter.com/a/status/${data[i].id_str}" target="_blank">link</a> </li>`);
+        }
+      })
+    })
+  });
+  </script>
+  <script>
+  $(document).ready(function(){
+    $("#btn2").click(function(){
+      $.get("http://localhost:3000/siteSend", (data) => {
+        $("#site").empty();
+        for(i = 0; i < data.length; i++){
+          $("#site").append(`<li> ${data[i].full_text} <a href="https://twitter.com/a/status/${data[i].id_str}" target="_blank">link</a> </li>`);
+        }
+      })
+    })
+  });
+  </script>
+  <script>
+  $(document).ready(function(){
+    $("#btn3").click(function(){
+      $.get("http://localhost:3000/negSend", (data) => {
+        $("#neg").empty();
+        for(i = 0; i < data.length; i++){
+          $("#neg").append(`<li> ${data[i].full_text} <a href="https://twitter.com/a/status/${data[i].id_str}" target="_blank">link</a> </li>`);
         }
       })
     })
@@ -51,36 +60,23 @@
 <div class="comment-widgets scrullable">
   <!-- Comment Row -->
 
-  <button class="blue" id="btn">Populate Tweets!</button>
+  <button class="blue" id="btn">App Tweets!</button>
+  <button class="blue" id="btn2">Site Tweets!</button>
+  <button class="blue" id="btn3">NPL Negative Tweets!</button>
 
 
 
-
-  <ul>
-
-  </ul>
-  <ul>
-    <li>pp</li>
-    <li>pp</li>
-    <li>pp</li>
-  </ul>
-  <ul>
-    <li>rr</li>
-    <li>rr</li>
-    <li>rr</li>
-  </ul>
-  <ul>
-    <li>oo</li>
-    <li>oo</li>
-    <li>oo</li>
-  </ul>
-  <ul>
-    <li>kk</li>
-    <li>kk</li>
-    <li>kk</li>
-  </ul>
-  
-  
+  <div class="grid-container">
+    <div class="grid-item">
+      <ul id="app"></ul>
+    </div>
+    <div class="grid-item">
+      <ul id="site"></ul>
+    </div>
+    <div class="grid-item">
+      <ul id="neg"></ul>
+    </div>
+  </div>
 
   </div>
 </div>

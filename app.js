@@ -34,6 +34,73 @@ var client = new Twitter({
   access_token_secret: 'pb4trWNelnsmPDgTYbPqbY4TNwBeH132yp80HKrywWbud'
 });
 
+//app tweets
+//
+//
+var appParams = {
+  //keywords to search for in addtion to our main search term (rbc + app or site)
+  q: 'RBC app bug OR RBC app broke OR RBC app -RT',
+  count: 50,
+  result_type: 'mixed',
+  lang: 'en',
+  tweet_mode:'extended'
+}
+//send tweet list to client
+app.get('/appSend', (req, res) => {
+    client.get('search/tweets', appParams, function(err, data, response) {
+      if(!err){
+        res.send(sendData(data.statuses));
+      } else {
+        console.log(err);
+      }
+    })
+})
+
+//site tweets
+//
+//
+//
+var siteParams = {
+  //keywords to search for in addtion to our main search term (rbc + app or site)
+  q: 'RBC site bug OR RBC site broke OR RBC site -RT',
+  count: 50,
+  result_type: 'mixed',
+  lang: 'en',
+  tweet_mode:'extended'
+}
+//send tweet list to client
+app.get('/siteSend', (req, res) => {
+    client.get('search/tweets', siteParams, function(err, data, response) {
+      if(!err){
+        res.send(sendData(data.statuses));
+      } else {
+        console.log(err);
+      }
+    })
+})
+
+//negative scored Tweets
+//
+//
+var negParams = {
+  //keywords to search for in addtion to our main search term (rbc + app or site)
+  q: 'RBC :( bug OR RBC :( broke OR RBC :( -RT',
+  count: 50,
+  result_type: 'mixed',
+  lang: 'en',
+  tweet_mode:'extended'
+}
+//send tweet list to client
+app.get('/negSend', (req, res) => {
+    client.get('search/tweets', negParams, function(err, data, response) {
+      if(!err){
+        res.send(sendData(data.statuses));
+      } else {
+        console.log(err);
+      }
+    })
+})
+
 //aggregate tweet data to send
 function sendData(ourData){
   var textList = [];
@@ -42,35 +109,6 @@ function sendData(ourData){
     }
   return textList;
 }
-
-//params for our twitter api call
-
-var appQS =  ['RBC -RT', '', ', ']
-var appParams = {
-  q: appQS[i],
-  count: 50,
-  result_type: 'recent',
-  lang: 'en',
-  tweet_mode:'extended'
-}
-
-//send tweet list to client
-app.get('/appSend', (req, res) => {
-  client.get('search/tweets',
-  q: ['RBC -RT', '', ', '],
-  count: 50,
-  result_type: 'recent',
-  lang: 'en',
-  tweet_mode:'extended', function(err, data, response) {
-    if(!err){
-      res.send(sendData(data.statuses));
-      console.log("send data recieved")
-    } else {
-      console.log(err);
-    }
-  })
-})
-
 
 app.use('/', indexRouter);
 
