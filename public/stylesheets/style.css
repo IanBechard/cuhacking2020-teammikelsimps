@@ -2,13 +2,16 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #00B7FF;
+  background-image: url(../img/bg.jpg);
 }
 
 a {
   color: #00B7FF;
+  background: #00B7FF;
 }
 h1 {
   color: #00B645;
+  
   text-align: center;
 }
 
