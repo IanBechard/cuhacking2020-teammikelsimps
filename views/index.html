@@ -25,9 +25,9 @@
   $(document).ready(function(){
     $("#btn").click(function(){
       $.get("http://localhost:3000/send", (data) => {
-        $("ol").empty();
+        $("ul").empty();
         for(i = 0; i < data.length; i++){
-          $("ol").append(`<li> ${data[i].full_text} <a href="https://twitter.com/a/status/${data[i].id_str}" target="_blank">link</a> </li>`);
+          $("ul").append(`<li> ${data[i].full_text} <a href="https://twitter.com/a/status/${data[i].id_str}" target="_blank">link</a> </li>`);
         }
       })
     })
@@ -38,7 +38,7 @@
 </head>
 <body>
 
-<h1>RBC Twitter Issue Track</h1>
+<h1>RBC Twitter Issue Tracker</h1>
 
 
 ​<div class="container1">
@@ -56,9 +56,8 @@
 
 
 
-  <ol>
-
-  </ol>
+  <ul>
+  </ul>
   </div>
 </div>
 

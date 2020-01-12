@@ -41,7 +41,7 @@ function sendData(ourData){
 
 //params for our twitter api call
 var params = {
-  q: 'RBC fix',
+  q: 'RBC -RT',
   count: 50,
   result_type: 'recent',
   lang: 'en',
