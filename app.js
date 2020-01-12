@@ -21,8 +21,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //nlp and sentiment analysis
-const { SentimentAnalyzer } = require('node-nlp');
-const sentiment = new SentimentAnalyzer({ language: 'en' });
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
 
 //twitter api
 var Twitter = require('twitter')
@@ -40,7 +40,7 @@ var client = new Twitter({
 var appParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
   q: 'RBC app bug OR RBC app broke OR RBC app -RT',
-  count: 50,
+  count: 90,
   result_type: 'mixed',
   lang: 'en',
   tweet_mode:'extended'
@@ -63,7 +63,7 @@ app.get('/appSend', (req, res) => {
 var siteParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
   q: 'RBC site bug OR RBC site broke OR RBC site -RT',
-  count: 50,
+  count: 90,
   result_type: 'mixed',
   lang: 'en',
   tweet_mode:'extended'
@@ -84,17 +84,18 @@ app.get('/siteSend', (req, res) => {
 //
 var negParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
-  q: 'RBC :( bug OR RBC :( broke OR RBC :( -RT',
-  count: 50,
+  q: 'RBC app -RT -UBER',
+  count: 90,
   result_type: 'mixed',
   lang: 'en',
   tweet_mode:'extended'
 }
+
 //send tweet list to client
 app.get('/negSend', (req, res) => {
     client.get('search/tweets', negParams, function(err, data, response) {
       if(!err){
-        res.send(sendData(data.statuses));
+        res.send(nplRemovePositive(sendData(data.statuses)));
       } else {
         console.log(err);
       }
@@ -109,6 +110,22 @@ function sendData(ourData){
     }
   return textList;
 }
+
+//analyze textList from sendData
+//use as a wrapper: nplRemovePositive(sendData(data.statuses))
+function nplRemovePositive(textList){
+  console.log(textList.length);
+
+  for(i = 0; i < textList.length; i++){
+    if(sentiment.analyze(textList[i].full_text).score > -5){
+      textList.splice(i, 1)
+    }
+  }
+  console.log(textList.length);
+  return textList
+}
+
+
 
 app.use('/', indexRouter);
 
