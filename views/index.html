@@ -20,7 +20,7 @@
   </script>
   <script>
   $(document).ready(function(){
-    $("#btn2").click(function(){
+    $("#btn").click(function(){
       $.get("http://localhost:3000/siteSend", (data) => {
         $("#site").empty();
         for(i = 0; i < data.length; i++){
@@ -32,7 +32,7 @@
   </script>
   <script>
   $(document).ready(function(){
-    $("#btn3").click(function(){
+    $("#btn").click(function(){
       $.get("http://localhost:3000/negSend", (data) => {
         $("#neg").empty();
         for(i = 0; i < data.length; i++){
@@ -60,23 +60,31 @@
 <div class="comment-widgets scrullable">
   <!-- Comment Row -->
 
-  <button class="blue" id="btn">App Tweets!</button>
-  <button class="blue" id="btn2">Site Tweets!</button>
-  <button class="blue" id="btn3">NPL Negative Tweets!</button>
+  <button class="blue" id="btn">Populate Tweets</button>
+
 
 
 
   <div class="grid-container">
     <div class="grid-item">
-      <ul id="app"></ul>
+      <h4 class="card-title">App Tweets</h4>
     </div>
     <div class="grid-item">
-      <ul id="site"></ul>
+      <h4 class="card-title">Site Tweets</h4>
     </div>
     <div class="grid-item">
-      <ul id="neg"></ul>
+      <h4 class="card-title">NPL Negative Tweets</h4>
     </div>
+
+    <div class="grid-item"><ul id="app"></ul></div>
+    <div class="grid-item"><ul id="site"></ul></div>
+    <div class="grid-item"><ul id="neg"></ul></div>
+
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
   </div>
+
 
   </div>
 </div>

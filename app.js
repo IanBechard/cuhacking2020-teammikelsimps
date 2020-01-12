@@ -39,7 +39,7 @@ var client = new Twitter({
 //
 var appParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
-  q: 'RBC app bug OR RBC app broke OR RBC app -RT',
+  q: 'RBC app bug OR RBC app broke OR RBC app OR bad -RT',
   count: 90,
   result_type: 'mixed',
   lang: 'en',
@@ -62,7 +62,7 @@ app.get('/appSend', (req, res) => {
 //
 var siteParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
-  q: 'RBC site bug OR RBC site broke OR RBC site -RT',
+  q: 'RBC site bug OR RBC site broke OR RBC site -RT -indigenous',
   count: 90,
   result_type: 'mixed',
   lang: 'en',
@@ -84,9 +84,9 @@ app.get('/siteSend', (req, res) => {
 //
 var negParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
-  q: 'RBC app -RT -UBER',
+  q: 'RBC fix -RT -UBER -low',
   count: 90,
-  result_type: 'mixed',
+  result_type: 'recent',
   lang: 'en',
   tweet_mode:'extended'
 }
@@ -117,7 +117,7 @@ function nplRemovePositive(textList){
   console.log(textList.length);
 
   for(i = 0; i < textList.length; i++){
-    if(sentiment.analyze(textList[i].full_text).score > -5){
+    if(sentiment.analyze(textList[i].full_text).score > -4){
       textList.splice(i, 1)
     }
   }
