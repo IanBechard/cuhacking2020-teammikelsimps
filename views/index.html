@@ -25,9 +25,9 @@
   $(document).ready(function(){
     $("#btn").click(function(){
       $.get("http://localhost:3000/send", (data) => {
-        $("ol").empty();
+        $("ul").empty();
         for(i = 0; i < data.length; i++){
-          $("ol").append(`<li> ${data[i]} </li>`);
+          $("ul").append(`<li> ${data[i].full_text} <a href="https://twitter.com/a/status/${data[i].id_str}" target="_blank">link</a> </li>`);
         }
       })
     })
@@ -38,7 +38,7 @@
 </head>
 <body>
 
-<h1>RBC Twitter Issue Track</h1>
+<h1>RBC Twitter Issue Tracker</h1>
 
 
 ​<div class="container1">
@@ -48,7 +48,7 @@
 <div class="card-body">
   <h4 class="card-title">Flagged Posts</h4>
 </div>
-<div class="comment-widgets scrollable">
+<div class="comment-widgets scrullable">
   <!-- Comment Row -->
 
   <button class="blue" id="btn">Populate Tweets!</button>
@@ -56,29 +56,29 @@
 
 
 
-  <ol>
+  <ul>
 
-  </ol>
-  <ol>
+  </ul>
+  <ul>
     <li>pp</li>
     <li>pp</li>
     <li>pp</li>
-  </ol>
-  <ol>
+  </ul>
+  <ul>
     <li>rr</li>
     <li>rr</li>
     <li>rr</li>
-  </ol>
-  <ol>
+  </ul>
+  <ul>
     <li>oo</li>
     <li>oo</li>
     <li>oo</li>
-  </ol>
-  <ol>
+  </ul>
+  <ul>
     <li>kk</li>
     <li>kk</li>
     <li>kk</li>
-  </ol>
+  </ul>
   
   
 
