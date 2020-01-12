@@ -39,7 +39,8 @@ var client = new Twitter({
 //
 var appParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
-  q: 'RBC app bug OR RBC app broke OR RBC app -RT',
+  //correct query if enterprise apis enabled -> RBC app -RT bug OR fix OR broke OR support OR crash OR fail OR outage OR problem
+  q: 'RBC app issue OR RBC app down -RT',
   count: 90,
   result_type: 'mixed',
   lang: 'en',
@@ -62,7 +63,8 @@ app.get('/appSend', (req, res) => {
 //
 var siteParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
-  q: 'RBC site bug OR RBC site broke OR RBC site -RT',
+  //correct query if enterprise apis enabled -> RBC site -RT bug OR fix OR broke OR support OR crash OR fail OR outage OR problem
+  q: 'RBC site fix OR RBC site down OR RBC site -RT -Indigenous',
   count: 90,
   result_type: 'mixed',
   lang: 'en',
@@ -72,7 +74,7 @@ var siteParams = {
 app.get('/siteSend', (req, res) => {
     client.get('search/tweets', siteParams, function(err, data, response) {
       if(!err){
-        res.send(sendData(data.statuses));
+        res.send(nplRemovePositive(sendData(data.statuses)));
       } else {
         console.log(err);
       }
@@ -84,7 +86,7 @@ app.get('/siteSend', (req, res) => {
 //
 var negParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
-  q: 'RBC app -RT -UBER',
+  q: 'RBC fix -RT -UBER -low',
   count: 90,
   result_type: 'mixed',
   lang: 'en',
@@ -117,7 +119,7 @@ function nplRemovePositive(textList){
   console.log(textList.length);
 
   for(i = 0; i < textList.length; i++){
-    if(sentiment.analyze(textList[i].full_text).score > -5){
+    if(sentiment.analyze(textList[i].full_text).score > -4){
       textList.splice(i, 1)
     }
   }
