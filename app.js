@@ -29,19 +29,45 @@ var client = new Twitter({
   access_token_secret: 'pb4trWNelnsmPDgTYbPqbY4TNwBeH132yp80HKrywWbud'
 });
 
+function sendData(data){
+  
+  
+  var textList = [];
+      for (i = 0; i < data.length; i++){
+          textList.push(data[i].full_text)
+      }
+      return textList;
+}
+
+function sendData2(ourData){
+  var htmlTweetList = [];
+  for (i = 0; i< ourData.length; i++){
+    client.get('statuses/oembed', 'https://twitter.com/' + ourData[i].screen_name + ourData[i].id), function(err, data, response){
+      
+    }  
+  }
+}
+
+function makeData(textList){
+    for (i = 0; i < textList.length; i++){
+
+    }  
+}
 
 //params for our twitter api call
 var params = {
-  q: 'RBC Mobile App',
+  q: 'RBC fix',
   count: 50,
   result_type: 'recent',
-  lang: 'en'
+  lang: 'en',
+  tweet_mode:'extended'
 }
 
 app.get('/send', (req, res) => {
   client.get('search/tweets', params, function(err, data, response) {
     if(!err){
-      res.send(data.statuses);
+         
+      res.send(sendData(data.statuses));
       console.log("post recieved")
     } else {
       console.log(err);
