@@ -20,7 +20,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//nlp and sentiment analysis
+const { SentimentAnalyzer } = require('node-nlp');
+const sentiment = new SentimentAnalyzer({ language: 'en' });
 
+//twitter api
 var Twitter = require('twitter')
 
 var client = new Twitter({
@@ -30,7 +34,7 @@ var client = new Twitter({
   access_token_secret: 'pb4trWNelnsmPDgTYbPqbY4TNwBeH132yp80HKrywWbud'
 });
 
-
+//aggregate tweet data to send
 function sendData(ourData){
   var textList = [];
     for (i = 0; i < ourData.length; i++){
@@ -40,16 +44,24 @@ function sendData(ourData){
 }
 
 //params for our twitter api call
-var params = {
-  q: 'RBC -RT',
+
+var appQS =  ['RBC -RT', '', ', ']
+var appParams = {
+  q: appQS[i],
   count: 50,
   result_type: 'recent',
   lang: 'en',
   tweet_mode:'extended'
 }
 
-app.get('/send', (req, res) => {
-  client.get('search/tweets', params, function(err, data, response) {
+//send tweet list to client
+app.get('/appSend', (req, res) => {
+  client.get('search/tweets',
+  q: ['RBC -RT', '', ', '],
+  count: 50,
+  result_type: 'recent',
+  lang: 'en',
+  tweet_mode:'extended', function(err, data, response) {
     if(!err){
       res.send(sendData(data.statuses));
       console.log("send data recieved")
