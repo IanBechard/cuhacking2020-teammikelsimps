@@ -40,7 +40,7 @@ var client = new Twitter({
 var appParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
   //correct query if enterprise apis enabled -> RBC app -RT bug OR fix OR broke OR support OR crash OR fail OR outage OR problem
-  q: 'RBC app issue OR RBC app down -RT',
+  q: 'RBC app OR RBC app down -RT',
   count: 90,
   result_type: 'mixed',
   lang: 'en',
@@ -88,7 +88,7 @@ var negParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
   q: 'RBC fix -RT -UBER -low',
   count: 90,
-  result_type: 'mixed',
+  result_type: 'recent',
   lang: 'en',
   tweet_mode:'extended'
 }
