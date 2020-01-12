@@ -27,7 +27,7 @@
       $.get("http://localhost:3000/send", (data) => {
         $("ol").empty();
         for(i = 0; i < data.length; i++){
-          $("ol").append(`<li> ${data[i]} </li>`);
+          $("ol").append(`<li> ${data[i].full_text} <a href="https://twitter.com/a/status/${data[i].id_str}" target="_blank">link</a> </li>`);
         }
       })
     })
