@@ -2,19 +2,38 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #00B7FF;
-  background-image: url(../img/bg.jpg);
+  background-image: url(bg.png);
 }
 
 a {
   color: #00B7FF;
   background: #00B7FF;
 }
+
 h1 {
-  color: #00B645;
-  
-  text-align: center;
+  color: rgb(255, 255, 255); text-align: center;
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px black;
+}
+h4 {
+  color: rgb(255, 255, 255); text-align: center;
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px black;
 }
 
-container {
-  padding: 5px;
+
+div.container1 {
+  color: rgb(255, 255, 255); text-align: center;
+  height: 10em;
+  position: relative
+
+}        
+
+.btn{
+  vertical-align: middle;
+}
+
+
+.resize_fit_center {
+    max-width:100%;
+    max-height:100%;
+    vertical-align: middle;
 }
