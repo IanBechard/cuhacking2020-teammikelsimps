@@ -8,3 +8,8 @@
  4. run command: set DEBUG=app:* & npm start
  
  Thank you for checking out our project!
+ Made by:
+ Ian Bechard
+ David Neale
+ Hamza Aburaneh
+ Mike Simpson
