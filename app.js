@@ -64,7 +64,7 @@ app.get('/appSend', (req, res) => {
 var siteParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
   //correct query if enterprise apis enabled -> RBC site -RT bug OR fix OR broke OR support OR crash OR fail OR outage OR problem
-  q: 'RBC site fix OR RBC site down OR RBC site -RT -Indigenous',
+  q: 'RBC site fix OR RBC site down OR RBC site -RT',
   count: 90,
   result_type: 'mixed',
   lang: 'en',
@@ -86,7 +86,7 @@ app.get('/siteSend', (req, res) => {
 //
 var negParams = {
   //keywords to search for in addtion to our main search term (rbc + app or site)
-  q: 'RBC fix -RT -UBER -low',
+  q: 'RBC -RT',
   count: 90,
   result_type: 'recent',
   lang: 'en',
