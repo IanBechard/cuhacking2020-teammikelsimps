@@ -1,5 +1,5 @@
 # cuhacking2020-teammikelsimps
- repository for cuhacking 2020 project
+ Repository for cuhacking 2020 project, mad for the RBC challenge at that event to analyze social media data to find reports of issues with production versions of their applications.
  
  To get started on local host.
  1. Clone from github on to PC.
